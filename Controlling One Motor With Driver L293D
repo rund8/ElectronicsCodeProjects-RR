@@ -1,0 +1,52 @@
+int enable3 = 3;
+int in3 = 4;
+int in4 = 2;
+
+void setup()
+{
+  pinMode(enable3, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+  
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+}
+
+void loop()
+{
+  motorMaju();
+  delay(2000);
+  motorMundur();
+  delay(2000);
+  motorBerhenti();
+  delay(2000);
+
+  for(int i = 0; i <= 255; i++){
+  	menaikkanKecepatan(i);
+    delay(15);
+  }
+}
+
+void motorMaju(){
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+  analogWrite(enable3, 255);
+}
+
+void motorMundur(){
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+  analogWrite(enable3, 255);
+}
+
+void motorBerhenti(){
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+  analogWrite(enable3, 0);
+}
+
+void menaikkanKecepatan(int kecepatan){
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+  analogWrite(enable3, kecepatan);
+}
